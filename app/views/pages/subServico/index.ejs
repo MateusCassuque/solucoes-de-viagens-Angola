@@ -1,0 +1,125 @@
+<head>
+    <title>Sub-Serviço / Show</title>
+
+    <link rel="stylesheet" href="/css/register.css">
+</head>
+<body>
+
+    <div class="row" id="formCreate">
+        <h1 id="titulo"> Reservar Serviço </h1>   
+       
+        <div class="col-md-5 col-10" id="colCard">
+            <% if(subServico){ %>
+                <div id="card-servico" class="card text-bg-success border-success m-2 valueControl">
+         
+                    <% if(clientNovo){ %>
+                        <div class="card-header bg-primary"> 
+                            <span id="nomeClient"><%=clientNovo.name%>, </span> 
+                            Serviço reservado com sucesso!
+                        </div>
+                    <% } else{ %>
+                        <div class="card-header">Reservar um Serviço</div>
+                    <% } %>
+             
+                    <div class="card-body">
+                        <h5 class="card-title"> ( <span id="titleName"><%=subServico.name %></span> ) </h5>
+                        
+                        <p class="card-text">Preço: <strong class="text-success" id="preco-card"> <%=subServico.preco %> </strong> </p>
+                    </div>
+        
+                </div>
+    
+                <div class="btn-group col-12">
+                    <a onclick="reservar()" id="reservar" class="btn btn-primary valueControl m-1">Reservar</a>
+                </div>
+            <% } %>
+        </div>
+        
+        <form action="/processo/sub/<%=subServico.id%>" id="form-dados" class="col-10 col-md-5" method="post">
+        
+            <div class="form-group opsao namePreco">
+                <label for="name">Nome</label>
+                <input type="text" name="name" id="name" class="form-control" placeholder="Nome do Requerente">
+            </div>
+            
+            <div class="form-group opsao namePreco">
+                <label for="apelido">Apelido: </label>
+                <input type="text" name="apelido" id="apelido" class="form-control" placeholder="Apelido do Requerente">
+            </div>
+
+            <div class=" form-group opsao">
+                <label for="telefone">Contacto:</label>
+                <input type="tel" name="telefone" id="telefone" placeholder="telefone: +244 999 999 999" class="form-control"><span class="obrigatorio">*</span>
+                <input type="email" name="email" id="email" placeholder="Email: exemplo@gmail.com" class="form-control">
+                
+            </div>
+
+            <div class=" form-group opsao">
+              <label for="bi">Nº BI:</label>
+              <input type="text" name="bi" id="bi" class="form-control" placeholder="Nº de Identificação"> <span class="obrigatorio">*</span>
+            </div>
+            
+            <div class=" form-group opsao">
+              <label for="passaport">Nº Passaport:</label>
+              <input type="text" name="passaport" id="passaport" class="form-control" placeholder="Nº Passaporte"> <span class="obrigatorio">*</span>
+            </div> 
+            
+            <div class="form-group opsao">
+              <label for="nascimento">Data de Nascimento:</label>
+              <input type="date" name="nascimento" id="nascimento" class="form-control">
+            </div>
+            
+            <div class="form-group opsao">
+              <label for="nascimento">Expiração do Passaport</label>
+              <input type="date" name="passaportDate" id="nascimento" class="form-control">
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Salvar"  class="btn btn-success large my-4 col-12">
+            </div>
+        </form>
+    </div>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="confirmacao" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="confirmacaoLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmacaoLabel"> Confirmação </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Tem certeza ?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Não</button>
+                    <a href="/subservico/delete/<%=subServico.id %>" class="btn btn-primary">Sim</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script defer>
+        const preco = $('#preco-card').text()
+
+        if(preco){
+            $('#form-dados').css({
+                display: 'none'
+            })
+        }
+
+        function reservar(){
+
+            $('#form-dados').css({
+                display: 'block'
+            })
+
+            $('#reservar').css({
+                display: 'none'
+            })
+
+            $('#name').focus()
+        }
+    </script>
+    
+</body>

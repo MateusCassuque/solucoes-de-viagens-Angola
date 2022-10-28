@@ -1,0 +1,97 @@
+*{
+    color: rgb(0, 0, 0);
+    /* font-weight: 500; */
+    font-size: 12px;
+}
+
+#rodp{
+    margin: 10px 0;
+    border-bottom: solid 2px rgb(97, 95, 95);
+}
+#rodp #title{
+  position: relative;
+
+  left: -10px;
+}
+#tabela #linha1,
+#tabela #linha{
+    font-size: small;
+    text-align: left;
+}
+
+#tabela #linha1{
+  border-bottom: dotted .3px rgb(97, 95, 95);
+}
+
+#tabela #linha1 .name,.desc,
+#tabela #linha .name,.desc{
+  text-align: justify;
+  position: relative;
+
+  left: -10px;
+}
+
+#tabela #linha .num,
+#tabela #linha1 .num{
+    text-align: end;
+}
+
+#tabela #linha .num, .name,
+#tabela #linha1 .num, .name{
+    color:rgb(0, 99, 153);
+}
+
+#ajuda,
+#preAjuda,
+#ajuda a{
+    color: rgb(2, 181, 217);
+    text-decoration: none;
+}
+.row .titulo,
+h5,
+#rodp .valor{
+    color:rgb(0, 99, 153);
+}
+
+#rodp #valor{
+    text-align: end;
+}
+
+p{
+    text-align: justify;
+}
+
+.card #img{
+    width: 150px;
+}
+
+#pr{
+    /* margin: 70px; */
+    /*
+    width: 100%;
+    height: 100vh;
+
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; */
+}
+
+#pr #card .lado{
+  border-left: solid 2px rgb(0, 99, 153);
+  padding-left: 5px;
+}
+
+#pr #card{
+  margin: 25px 25px;
+  padding: 30px;
+    /* width: 800px; */
+    /* margin: 0 auto; */
+    border: none;
+    background-image: url('../fundowise.png');
+    background-repeat: no-repeat;
+    background-size: 1150px 950px;
+    background-position: -350px -20px;
+
+}

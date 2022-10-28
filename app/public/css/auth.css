@@ -1,0 +1,53 @@
+body{
+    background: linear-gradient(50deg, #021317 50%, #353131);
+}
+
+#card-login{
+    border-radius: 7%;
+    width: 450px;
+    margin: 10px;
+}
+
+.container{
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.container img{
+    width: 200px;
+    border-radius: 35%;
+    border: solid 1px rgba(255, 255, 255, 0.162);
+}
+
+
+.container #card-login label{
+    border-left: solid 3px rgb(212, 160, 4);
+    padding: 4px;
+    margin: 10px 0;
+}
+
+@media(max-width: 720px){
+    .container{
+        height: auto;
+
+        margin-top: 25px;
+    }
+
+    body{
+        background: black;
+    }
+
+    .container img{
+        width: 150px;
+    }
+    
+    #card-login{
+        width: 300px;
+    }
+    
+}
+    

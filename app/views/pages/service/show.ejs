@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DSV / SHOW - <%=servico.name %> </title>
+    <link rel="stylesheet" href="/css/showService.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row col-12">
+            <% if(servico){ %>
+                <div class="card col-md-6 col-12 mx-3 my-2" id="card">
+                    <% if(servico.imagem){ %>
+                        <img class="card-img-top" src="/img/services/<%=servico.imagem%>" alt="<%=servico.name %>">
+                  
+                    <% } else{ %>    
+                        <img class="card-img-top" src="/img/Slid/image_downloader_1661001390616.jpg" alt="Turismo">
+                    <% } %>
+                    
+                    <div class="card-body">
+                      <h3 class="card-title"> <%=servico.name %> </h3>
+
+                      <p class="card-subtitle text-muted">Preço: <%=servico.preco%></p>
+                    
+                      <h5 class="card-header">Serviços:</h5>
+                      <ul>
+                        <% servico.microServicos.forEach(ms => { %>
+                            <li><%=ms %></li>
+                        <% }) %>
+                      </ul>
+
+                      <h5 class="card-header">Requisitos :</h5>
+                      <ul>
+                        <% servico.requisitos.forEach(ms => { %>
+                            <li><%=ms %></li>
+                        <% }) %>
+                      </ul>
+
+                      <h5 class="card-header">Processos : <span id="processos-count"><%=serviceProcessos.length%></span></h5>
+                      
+                      <table class="table table-hover" id="clients">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Cliente</th>
+                                <th scope="col">Estado</th>
+                                <th scope="col">Acção</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% serviceProcessos.forEach(processo => { %>
+                            <tr>
+                                <th scope="row"><%=processo.id %></th>
+                                <td><%=processo.client.name %> <%=processo.client.apelido %></td>
+                                <td><%=processo.estado %></td>
+                                <td><a href="/processo/show/<%=processo.id%>" class="btn btn-primary">Ver</a></td>
+                            </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+
+                      <div class="card-actions">
+                        <a class="col-12 btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmacao">Eliminar</a>
+                      </div>
+
+                    </div>
+          
+                    <div class="card-footer" id="footer-card">
+                      <p class="text-muted">para mais informações conatcte: +244 949 143 902 | <br class="d-md-none">
+                        <span class="text-success">Whatsapp: +244 952 494 542</span>
+                      </p>
+                    </div>
+              </div>
+              <% } %>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="confirmacao" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="confirmacaoLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="confirmacaoLabel">Certaza?</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>Tem certeza que dezeja Eliminar este serviço?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Não</button>
+            <a href="/service/delete/<%=servico.id %>" class="btn btn-primary">Sim</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+</body>
+</html>

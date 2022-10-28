@@ -1,0 +1,107 @@
+<head>
+    <title>Sub-Serviço / Show</title>
+
+    <link rel="stylesheet" href="/css/register.css">
+</head>
+<body>
+
+    <div class="" id="formCreate">
+        <h1 id="titulo"> Editar Sub-Serviço </h1>   
+        <% if(subServico){ %>
+            
+            <div class="card text-bg-success mb-3 border-success m-2 valueControl">
+     
+                <div class="card-header">Sub-Serviço Cadastrado com sucesso!</div>
+         
+                <div class="card-body">
+                    <h5 class="card-title"> ( <span id="titleName"><%=subServico.name %></span> ) </h5>
+                    
+                    <p class="card-text">Preço: <strong class="text-success" id="preco-card"> <%=subServico.preco %> </strong> </p>
+                </div>
+    
+            </div>
+
+            <div class="btn-group col-12">
+                <a onclick="novo()" class="btn btn-primary valueControl m-1">Editar</a>
+                <a data-bs-toggle="modal" data-bs-target="#confirmacao" class="btn btn-danger valueControl m-1">Eliminar</a>
+            </div>
+        <% } %>
+        
+        <form action="/subservico/edit/<%=subServico.id%>" id="form-dados" class="col-10 col-md-4" method="post">
+            
+            <div class="form-group opsao namePreco">
+                <label for="estado"> Estado: </label>
+                <select name="estado" id="estado" class="form-control">
+                    <option value="Concluido"> Concluido </option>
+                    <option value="Activo"> Activo </option>
+                </select>
+                <span class="obrigatorio">*</span>
+            </div>
+        
+            <div class="form-group opsao namePreco">
+                <label for="name">Nome</label>
+                <input type="text" name="name" id="name" class="form-control" placeholder="Nome do Serviço">
+            </div>
+            
+            <div class="form-group opsao namePreco">
+                <label for="preco">Preço: </label>
+                <input type="text" name="preco" id="preco" class="form-control" placeholder="Preço do Serviço">
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Salvar"  class="btn btn-success large my-4 col-12" onclick="next('', '#btn2', '')">
+            </div>
+        </form>
+    </div>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="confirmacao" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="confirmacaoLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmacaoLabel"> Confirmação </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Tem certeza ?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Não</button>
+                    <a href="/subservico/delete/<%=subServico.id %>" class="btn btn-primary">Sim</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const preco = $('#preco-card').text()
+        const name = $('#titleName').text()
+
+        $('#titulo').css({
+            display: 'none'
+        })
+
+        if(preco){
+            $('#form-dados').css({
+                display: 'none'
+            })
+        }
+
+        function novo(){
+            $('.valueControl').css({
+                display: 'none'
+            })
+
+            $('#form-dados').css({
+                display: 'block'
+            })
+
+            $('#titulo').css({
+                display: 'block'
+            })
+
+            $('#name').val(name)           
+        }
+    </script>
+    
+</body>

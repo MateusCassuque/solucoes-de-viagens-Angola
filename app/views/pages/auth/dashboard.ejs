@@ -1,0 +1,178 @@
+<head>
+    <title>Dashboard</title>
+</head>
+<body>
+    <%- include('../../components/publicidades') %>
+    
+    <% if(result){ %>
+        <%- include('../../components/pesquisar') %>
+    <% }else{ %>
+    
+    <div id="tabControll" class="col-12">
+        <div class="">
+            <main>
+                <nav>
+                    <div class="nav nav-tabs mb-2" id="nav-tab" role="tablist">
+                        <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
+                        type="button" role="tab" aria-controls="nav-home" aria-selected="true">
+                            <span class=" d-md-block">Serviços</span>
+                            <!-- <span class="d-block d-md-none">Sr</span> -->
+                        </button>
+                        
+                        <button class="nav-link" id="nav-tab1-tab" data-bs-toggle="tab" data-bs-target="#nav-tab1" type="button" role="tab" aria-controls="nav-tab1" aria-selected="false">
+                            <span class=" d-md-block">Processos</span>
+                            <!-- <span class="d-block d-md-none">Pr</span> -->
+                        </button>
+                        
+                        <button class="nav-link" id="nav-tab2-tab" data-bs-toggle="tab" data-bs-target="#nav-tab2" type="button" role="tab" aria-controls="nav-tab2" aria-selected="false">
+                            <span class=" d-md-block">Sub-Serviços</span>
+                            <!-- <span class="d-block d-md-none">S.Sr</span> -->
+                        </button>
+                        
+                        <button class="nav-link" id="nav-tab3-tab" data-bs-toggle="tab" data-bs-target="#nav-tab3" type="button" role="tab" aria-controls="nav-tab3" aria-selected="false">
+                            <span class=" d-md-block">Sub-Processos</span>
+                            <!-- <span class="d-block d-md-none">S.Pr</span> -->
+                        </button>
+
+                    </div>
+                </nav>
+            </main>
+        
+            <div class="tab-content" id="nav-tabContent">
+            
+                <!--primeira parte-->
+                <div class="tab-pane show active m-2" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+
+                    <a href="/register" class="btn btn-primary d-block my-4"> Novo Serviço </a>
+                    
+                    <table class="table table-hover" id="tabela">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Serviços</th>
+                                <th scope="col">Preço</th>
+                                <th scope="col">Acção</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <% servicos.forEach(servico => { %>
+                            <tr>
+                                <th scope="row"><%=servico.id %></th>
+                                <td><%=servico.name %></td>
+                                <td><%=servico.preco %></td>
+                                <td>
+                                    <a href="/service/show/<%=servico.id%>" class="btn btn-primary">Ver</a>
+                            </tr>
+                            <% })%>
+                        </tbody>
+
+                        <div class="card-header">
+                            Total: <strong id="total" class=" h2"> <%=servicos.length%> </strong>
+                        </div>
+                    </table>
+                </div>
+            
+                <!--Segunda parte-->
+                
+                <div class="tab-pane fade" id ="nav-tab2" role="tabpanel" aria-labelledby ="nav-tab2-tab">
+                    
+                    <a href="/subservico/create" class="btn btn-success d-block my-4"> Novo Sub-Serviço </a>
+                    
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Serviço</th>
+                                <th scope="col">Preço</th>
+                                <th scope="col">Estado</th>
+                                <th scope="col">Acção</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% subservicos.forEach(servico => { %>
+                                <tr>
+                                    <th scope="row"><%=servico.id %></th>
+                                    <td><%=servico.name %></td>
+                                    <td><%=servico.preco %></td>
+                                    <td><%=servico.estado %></td>
+                                    <td><a href="/subservico/show/<%=servico.id%>" class="btn btn-primary">Ver</a></td>
+                                </tr>
+                            <% })%>
+                        </tbody>
+
+                        <div class="card-header">
+                            Total: <strong id="total" class=" h2"> <%=subservicos.length%> </strong>
+                        </div>
+                    </table>
+                </div>
+                
+                <!--terçeira parte-->
+                
+                <div class="tab-pane fade" id ="nav-tab1" role="tabpanel" aria-labelledby ="nav-tab1-tab">
+                    
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Cliente</th>
+                                <th scope="col">Serviço</th>
+                                <th scope="col">Estado</th>
+                                <th scope="col">Acção</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% processos.forEach(processo => { %>
+                            <tr>
+                                <th scope="row"><%=processo.id %></th>
+                                <td><%=processo.client.name %> <%=processo.client.apelido %></td>
+                                <td><%=processo.servico.name %></td>
+                                <td><%=processo.estado %></td>
+                                <td><a href="/processo/show/<%=processo.id%>" class="btn btn-primary">Ver</a></td>
+                            </tr>
+                            <% }) %>
+                        </tbody>
+
+                        <div class="card-header">
+                            Total: <strong id="total" class=" h2"> <%=processos.length%> </strong>
+                        </div>
+                    </table>
+                </div>
+
+                <!--quarta parte-->
+                
+                <div class="tab-pane fade" id ="nav-tab3" role="tabpanel" aria-labelledby ="nav-tab3-tab">
+                    
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Cliente</th>
+                                <th scope="col">Sub-Serviço</th>
+                                <th scope="col">Estado</th>
+                                <th scope="col">Acção</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% subprocessos.forEach(subprocesso => { %>
+                            <tr>
+                                <th scope="row"><%=subprocesso.id %></th>
+                                <td><%=subprocesso.client.name %> <%=subprocesso.client.apelido %></td>
+                                <td><%=subprocesso.servico.name %></td>
+                                <td><%=subprocesso.estado %></td>
+                                <td><a href="/processo/sub/show/<%=subprocesso.id%>" class="btn btn-primary">Ver</a></td>
+                            </tr>
+                            <% }) %>
+                        </tbody>
+
+                        <div class="card-header">
+                            Total: <strong id="total" class=" h2"> <%=processos.length%> </strong>
+                        </div>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <% } %>
+</body>

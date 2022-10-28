@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Css do Bootstrap -->
+    <link rel="stylesheet" href="/assets/dist/css/bootstrap.min.css">
+
+    <!--link para O javaScript bootstrap da pagina-->
+    <script src="/assets/dist/js/bootstrap.bundle.min.js"></script>
+
+    <link rel="stylesheet" href="/css/wise1.css">
+    <title>Document</title>
+</head>
+<body>
+    <main id="pr">
+        <div class="card" id="card">
+            <img src="/log.png" id="img" class="m-2">
+
+            <div class="col-12 m-2">
+                <div class="row">
+
+                    <p class="col-8 m-4">Wise Europe SA
+                        <br> Avenue Louise 54/552
+                        <br>Brussels 1050
+                        <br>Belgium
+                    </p>
+
+
+                    <p class="col-3" id="ajuda"><strong id="preAjuda">Precisa de ajuda?</strong>
+                        <br> Estamos aqui para ajudar.
+                        <br>Então se algo não estiver certo,
+                        <br>Entra em contacto conosco:
+                        <br><a href="https://wise.com/help">wise.com/help</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-12 lado my-2 mt-4">
+                <div class="row">
+
+                    <p class="col-11 mx-4"><strong class="titulo">Extrato em EUR</strong>
+                        <br> 1 de maio de 2022 [GMT+01:00] 14 de outubro de 2022 [GMT+01:00]
+                        <br>Gerado em: 20 de outubro de 2022
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="col-12 lado my-2 mt-4">
+                <div class="row">
+
+                    <p class="col-4 mx-4"><strong class="titulo">Titular da Conta</strong>
+                        <br> Joelson Mutali
+                        <br>Av santana 385 moledo do minho
+                        <br>Lisboa
+                        <br>4910-255 Moledo cmn
+                        <br>Portugal
+                    </p>
+
+
+                    <p class="col-4"><strong class="titulo">IBAN</strong>
+                        <br> BE61 9673 4731 3617
+                    </p>
+
+                    <p class="col-3"><strong class="titulo">Código do banco (SWIFT/BIC)</strong>
+                        <br>TRWIBEB1XXX
+                    </p>
+                </div>
+            </div>
+
+
+
+            <div id="tabela" class="col-12 lado mt-4">
+              <div class="col-12">
+                <div class="row mx-4" id="rodp">
+                  <h5 id="title" class="col-9">Conta EUR em 14 de outubro de 2022 [GMT+01:00]</h5>
+
+                  <p id="valor" class="col-3"><strong class="titulo">
+                    <span class="valor">60.00 EUR</span>
+                  </strong></p>
+                </div>
+              </div>
+            <% movimentos.forEach(mov => { %>
+              <% if(mov.saldo == '489.33 EUR'){ %>
+                <div id="linha" class="row mt-1 mx-4 border-none">
+              <% }else{ %>
+                <div id="linha1" class="row mt-1 mx-4">
+              <% }%>
+                    <span class="col-6 name"><%=mov.name%></span>
+                    <span class="col-2 num"><%=mov.credito%></span>
+                    <span class="col-2 num"><%=mov.debito%></span>
+                    <span class="col-2 num"><%=mov.saldo%></span>
+                    <span class="col-8 desc text-muted"><%=mov.descricacao%></span>
+                </div>
+
+
+            <% }) %>
+            </div>
+        </div>
+    </main>
+
+  <script src="/assets/dist/jquery/dist/jquery.min.js"></script>
+</body>
+</html>

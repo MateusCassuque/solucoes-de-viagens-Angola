@@ -26,7 +26,8 @@ class Servico {
       this.microServicos = servico.microServicos
       
       this.requisitos = servico.requisitos
-      // this.image = servico.image
+      this.createdAte = new Date()
+
       
       Servico.servicos.push(this)
       

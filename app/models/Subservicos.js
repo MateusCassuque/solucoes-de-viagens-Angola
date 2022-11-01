@@ -24,8 +24,8 @@ class Subservico {
       this.preco = subservico.preco
       
       this.estado = false
-      
-      this.createdAte = Date.now()
+
+      this.createdAte = new Date()
       
       Subservico.subservicos.push(this)
       

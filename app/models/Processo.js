@@ -25,7 +25,7 @@ class Processo {
       
       this.estado = false
       
-      this.createdAte = Date.now()
+      this.createdAte = new Date()
       
       Processo.processos.push(this)
       

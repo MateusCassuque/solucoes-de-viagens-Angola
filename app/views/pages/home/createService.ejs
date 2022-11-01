@@ -208,13 +208,11 @@
                 requisitos,
             } ).then(res => {
                 servico = res
-                console.log(servico) 
                 next('.image', '.botao', '#btn3')
             })
         })
         function getId(){
             const form = document.querySelector('#form-img')
-            console.log(servico)
 
             form.setAttribute('action', '/sendImage/' + servico.id)
         }

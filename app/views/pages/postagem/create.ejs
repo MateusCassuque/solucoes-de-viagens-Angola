@@ -1,6 +1,7 @@
 <head>
     <title>DSV - Create Post</title>
 
+    <script src="/js/imageFunction.js" defer></script>
 </head>
 <body>
 
@@ -9,29 +10,13 @@
     </div>
 
     <div class="container" id="principal">
-        <form action="/post/create" method="post" class="m-4">
-            
-            
-            <fieldset id="inputs" class="d-none">          
-                <div class="form-group">
-                    <label for="titulo">Título: </label>
-                    <input type="text" name="titulo" class="form-control" id="titulo">
-                </div>        
 
-                <div class="form-group">
-                    <label for="subtitulo">Sub-Título: </label>
-                    <input type="text" name="subtitulo" class="form-control" id="subtitulo">
-                </div>  
-                
-                <div class="form-group">
-                    <label for="cabecalho">Cabeçalho: </label>
-                    <input type="text" name="cabecalho" class="form-control" id="cabecalho">
-                </div>  
-                
-                <input type="submit" value="Salvar" class=" mt-4 btn btn-primary col-12">
-            </fieldset>
-            
-        </form>
+        <div class="card" id="card">
+            <img class="card-img-top" id="image" src="" alt="imagem de capa para o tipo de serviço">
+        </div>
+        
+
+        <% if(!corpo){ %>
         
         <form action="/post/conteudo" method="post" id="form-conteudo" class="m-4">
             
@@ -43,47 +28,109 @@
                     <label class="form-check-label" for="titulo">
                         Título
                     </label>
-                    <input class="form-check-input" type="checkbox" id="titulo">
+                    <input class="form-check-input" type="checkbox" id="titulo" name="titulo">
                 </div>
                 
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="subtitulo">
+                    <input class="form-check-input" type="checkbox" id="subtitulo" name="subtitulo">
                     <label class="form-check-label" for="subtitulo">
                         Sub-Título
                     </label>
                 </div>
                 
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="cabecalho">
+                    <input class="form-check-input" type="checkbox" id="cabecalho" name="cabecalho">
                     <label class="form-check-label" for="cabecalho">
                         Cabeçalho
-                    </label>
-                </div>  
-                
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="image">
-                    <label class="form-check-label" for="image">
-                        Imagem
                     </label>
                 </div>
             </fieldset>
 
             <div class="form-group">
-                <textarea name="conteudo" class="form-control" id="conteudo" cols="50" rows="10" placeholder="O que há de novo?" ></textarea>
+                <textarea name="textPost" class="form-control" id="textPost" cols="50" rows="15" placeholder="O que há de novo?" ></textarea>
                 
                 <input type="submit" value="Publicar" class=" mt-4 btn btn-primary col-12">
             </div>
         </form>
         
-        <form action="/post" method="post" class="m-4 d-none">
-            <div class="form-group">
-                <label for="image">Imagem:</label>
-                <input type="file" name="file" id="file" class="form-control-file">
-            </div>
+        <% }else{ %>
+            <form action="/post" method="post" class="m-2">
+                
 
-            <input type="submit" value="Salvar" class=" mt-4 btn btn-primary col-12">
-        </form>
-        
+                <% if(!corpo.image){ %>
+                <div class="form-check m-4">
+                    <legend>
+                        <small class="form-text text-muted my-4">Elementos adicionais: </small>
+                    </legend>
+                    <input class="form-check-input" type="checkbox" id="image" name="image">
+                    <label class="form-check-label" for="image">
+                        Imagem
+                    </label>
+                </div>
+                <% } %>
+
+                <textarea name="textPost" class="form-control" id="textPost" cols="50" rows="15" readonly> <%=corpo.textPost %> </textarea>
+            
+                <fieldset id="inputs">
+                    
+                    <% if(corpo.titulo){ %>
+                    <div class="form-group">
+                        <label for="titulo">Título: </label>
+                        
+                        <% if(corpo.titulo == 'on'){ %>
+                            <input type="text" name="titulo" class="form-control" id="titulo">
+                        <% }else{ %>
+                            <input type="text" name="titulo" value="<%=corpo.titulo %>" readonly class="form-control" id="titulo">
+                        <% } %>
+                    </div>
+                    <% } %>   
+                    
+                    <% if(corpo.subtitulo){ %>
+                    <div class="form-group">
+                        <label for="subtitulo">Sub-Título: </label>
+
+                        <% if(corpo.titulo == 'on'){ %>
+                            <input type="text" name="subtitulo" class="form-control" id="subtitulo">
+                        <% }else{ %>
+                            <input type="text" name="subtitulo" value="<%=corpo.subtitulo %>" readonly class="form-control" id="titulo">
+                        <% } %>
+                    </div>
+                    <% } %>
+                    
+                    <% if(corpo.cabecalho){ %>
+                    <div class="form-group">
+                        <label for="cabecalho">Cabeçalho: </label>
+
+                        <% if(corpo.titulo == 'on'){ %>
+                            <input type="text" name="cabecalho" class="form-control" id="cabecalho">
+                        <% }else{ %>
+                            <input type="text" name="cabecalho" value="<%=corpo.cabecalho %>" readonly class="form-control" id="titulo">
+                        <% } %>
+                    </div> 
+                    <% } %>
+
+                    
+                    <% if(!corpo.image){ %>
+                        <input type="submit" value="Salvar" class=" mt-4 btn btn-primary col-12">
+                    <% } %>     
+
+                    
+                </fieldset>
+                
+            </form>
+            
+            <% if(corpo.image){ %>
+            <form action="/post/image/<%=corpo.id%>" method="post" class="m-4" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="file">Imagem:</label>
+                    <input type="file" name="file" id="imageInput" class="form-control-file">
+                </div>
+    
+                <input type="submit" value="Salvar" class=" mt-4 btn btn-primary col-12">
+            </form>
+            <% } %>     
+            
+        <% } %>
         
     </div>
 </body>

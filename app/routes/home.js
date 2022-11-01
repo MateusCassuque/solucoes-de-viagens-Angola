@@ -52,19 +52,21 @@ router.post('/sendImage/:servicoId', multer(multerConfig).single('file'), async 
       return res
     })
     
-  const novoServicos = servicos.map(s => {
-    if(s.id == id){
-      s.imagem = image.filename
-    }
-    return s
-  })
-  jsonCRUD.JSONWrite(dbc.path, novoServicos, dbc.encoding)
+    const novoServicos = servicos.map(s => {
+      if(s.id == id){
+        s.imagem = image.filename
+      }
+      return s
+    })
+    
+    jsonCRUD.JSONWrite(dbc.path, novoServicos, dbc.encoding)
     
     res.status(200).redirect('/auth/dashboard')
+    
   } catch (error) {
-      res.status(400).send({erro: 'Error to send image: ' + error})
+    res.status(400).send({erro: 'Error to send image: ' + error})
   }
-
+  
 })
 
 router.post('/', async (req, res) => {

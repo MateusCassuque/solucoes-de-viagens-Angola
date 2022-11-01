@@ -8,6 +8,9 @@ class User{
         this.name = user.name
         this.email = user.email
         this.senha = user.senha
+
+      this.createdAte = new Date()
+
     }
 }
 module.exports = User

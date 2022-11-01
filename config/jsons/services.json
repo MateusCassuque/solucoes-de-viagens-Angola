@@ -37,5 +37,25 @@
       " Comprovativo de Subsistência"
     ],
     "imagem": "a83c1f3387d985f45869a370c628e124-image_downloader_1661001638086.png"
+  },
+  {
+    "id": 3,
+    "name": "Visto de Formação",
+    "preco": "150 000,00 Kz",
+    "microServicos": [
+      " Agendamento",
+      " Reserva de Vôo",
+      " Reserva de Hotel",
+      " formulário",
+      " Declarações & Termos",
+      " Inscrição em Escola"
+    ],
+    "requisitos": [
+      " Bilhete de Identidade",
+      " Passaport válido por pelo menos três meses",
+      " Comprovativo de Alojamento",
+      " Comprovativo de Subsistência"
+    ],
+    "imagem": "c48b37a93cc82401069f6b64fef6fcb3-image_downloader_1661001571612.jpg"
   }
 ]

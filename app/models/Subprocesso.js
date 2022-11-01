@@ -25,7 +25,7 @@ class Subprocesso {
       
       this.estado = false
       
-      this.createdAte = Date.now()
+      this.createdAte = new Date()
       
       Subprocesso.processos.push(this)
       

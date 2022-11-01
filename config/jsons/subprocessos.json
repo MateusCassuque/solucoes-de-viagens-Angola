@@ -20,5 +20,27 @@
     },
     "estado": false,
     "createdAte": 1666605141285
+  },
+  {
+    "id": 2,
+    "client": {
+      "name": "Pedro",
+      "apelido": "Ngunza",
+      "telefone": "935823482",
+      "email": "predro24@gmail.com",
+      "bi": "00002454756LA054",
+      "passaport": "N1154123",
+      "nascimento": "1992-02-12",
+      "passaportDate": "2024-10-12"
+    },
+    "servico": {
+      "id": 1,
+      "name": "Agendamento",
+      "preco": "15 300,00 Kz",
+      "estado": false,
+      "createdAte": 1665665996978
+    },
+    "estado": true,
+    "createdAte": 1667061543050
   }
 ]

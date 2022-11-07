@@ -1,0 +1,65 @@
+<header>
+  <link rel="stylesheet" href="/css/style.css">
+</header>
+
+<body>
+  
+  <h3 id="novidades" class="m-4">Novidades</h3>
+
+<div class="row col-10" id="servicos">
+  <% posts.forEach(post => { %>
+  
+    <div class="card" style="width: 33rem; margin: 15px;">
+      
+      <% if(post.postagem.cabecalho){ %>
+        <div class="card-header">  <%=post.postagem.cabecalho%> </div>
+      <% } %>
+      
+      
+      <div class="card-body">
+        <% if(post.postagem.image){ %>
+          <div class="img-card">
+            <img src="/img/services/<%=post.postagem.image%>" alt="Foto do Post" class="card-img img-fluid">
+          </div>
+        <% } %>
+
+
+        <% if(post.postagem.titulo){ %>
+          <h2 class="card-title"> <%=post.postagem.titulo%> </h2>
+        <% } %>
+        
+        
+        <div class="card-text" id="conteudo">
+          <% if(post.postagem.subtitulo){ %>
+            <p>
+              <strong class="showServico">
+                <span class="card-sub-title mb-4"> <%=post.postagem.subtitulo%> </span>
+              </strong>
+            </p>
+          <% } %>
+          
+          
+          <p>
+            <%=post.postagem.textPost%>
+          </p>
+          
+        </div>
+        
+        <div class="card-actions">
+          <a href="#" class="mt-4 btn btn-primary">Ler Mais</a>
+        </div>
+        
+      </div>
+      
+      <div class="card-footer"> 
+        <% const t = new Date() %> 
+        <%= t %> 
+      </div>
+
+    </div>
+
+    <% }) %>
+    
+</div>
+
+</body>

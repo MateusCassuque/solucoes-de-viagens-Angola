@@ -12,17 +12,10 @@
     text-transform: capitalize;
 }
 
-.card{
-    width: max-content;
-}
 
 #servicos,
 #subServicos {
     margin: 4px;
-}
-
-#subServicos .card{
-    max-width: 25rem;
 }
 
 /*Formatação do tamanho da fonte para os telefones!*/
@@ -43,16 +36,6 @@
     
     #carouselExampleIndicators .carousel-item img{
         height: 100%;
-    }
-
-    #subServicos{
-        width: 100%;
-        margin: auto;
-    }
-    
-    #subServicos .card{
-        max-width: 25rem;
-        margin: 20px;
     }
 
     #carouselExampleIndicators .carousel-item .legenda{

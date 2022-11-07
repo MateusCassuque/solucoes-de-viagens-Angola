@@ -8,15 +8,7 @@ const Subservico =  require('../models/Subservicos')
 const jsonCRUD = require('../../config/jsonCRUD')
 
 const sf = {
-    
-    pathU: path.resolve(__dirname, '..', '..', 'config', 'jsons', 'users.json' ),
-
     path: path.resolve(__dirname, '..', '..', 'config', 'jsons', 'subservicos.json' ),
-    
-    pathS: path.resolve(__dirname, '..', '..', 'config', 'jsons', 'services.json' ),
-    
-    pathP: path.resolve(__dirname, '..', '..', 'config', 'jsons', 'processes.json' ),
-
     encoding: 'utf-8'
 }
 

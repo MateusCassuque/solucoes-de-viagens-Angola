@@ -36,6 +36,10 @@
                 <label for="senha">Senha:</label>
                 <input type="password" name="senha" id="senha" placeholder="senha" class="form-control">
               </div>
+
+              <% if(message){ %>
+                <p class="m-2 text-danger"> <%=message%> </p>
+              <% } %>
               
               <input type="submit" value="Enviar" class="my-4 btn btn-primary">
             </div>

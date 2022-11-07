@@ -10,6 +10,7 @@ const sf = {
     pathSb: path.resolve(__dirname, '..', '..', 'config', 'jsons', 'subservicos.json' ),
     pathP: path.resolve(__dirname, '..', '..', 'config', 'jsons', 'processes.json' ),
     pathSP: path.resolve(__dirname, '..', '..', 'config', 'jsons', 'subprocessos.json' ),
+    pathPost: path.resolve(__dirname, '..', '..', 'config', 'jsons', 'post.json' ),
     encoding: 'utf-8'
 }
 
@@ -29,10 +30,10 @@ router.post('/', async (req, res) => {
     if(!user){
         const message = 'Não autorizado!'
   
-        res.status(400).render('auth', {message})
+        return res.status(400).render('pages/auth', {message})
     }
     // req.session.userAdmin = userAdmin
-    res.status(200).redirect('/auth/dashboard')  
+    return res.status(200).redirect('/auth/dashboard')  
 })
 
 router.get('/logout', (req, res) => {
@@ -120,8 +121,14 @@ router.get('/buscar', async (req, res) => {
 
 router.get('/posts', async (req, res) => {
     try{
+
+        const posts = await jsonCRUD.JSONRead(sf.pathPost,sf.encoding).then(res => {
+            return res
+        })
+
         res.status(200).render('layout/admin', {
-            conteudo: 'auth/postagens'
+            conteudo: 'auth/postagens',
+            posts
         })
     }catch(error){
         res.status(400).send(error)

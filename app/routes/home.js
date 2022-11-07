@@ -126,6 +126,32 @@ router.get('/service/:servicoId', async (req, res) => {
   }
 })
 
+
+router.get('/services', async (req, res) => {
+  try {
+    const servicos = await jsonCRUD.JSONRead(dbc.path, dbc.encoding).then(res => {
+      return res
+    })
+    
+    res.status(200).render('layout/home', {
+      conteudo: '/home/servicos',
+      servicos
+    })
+  } catch (error) {
+    res.status(400).res.send({
+      Error: 'Erro to access the service page'
+    })
+  }
+})
+
+
+
+
+
+
+
+
+
 router.get('/wise', async (req, res) => {
   // const servicos = await jsonCRUD.JSONRead(dbc.path, dbc.encoding).then(res => {
   //   return res

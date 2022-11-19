@@ -15,25 +15,29 @@ const sf = {
 }
 
 router.get('/login', (req, res) => {
-    res.render('pages/auth')
+    res.render('pages/auth', {message: ''})
 })
 
 router.post('/', async (req, res) => {
-    const {email, senha} = req.body
+    try{
+        const {email, senha} = req.body
 
-    const users = await jsonCRUD.JSONRead(sf.pathU,sf.encoding).then(res => {
-        return res
-    })
+        const users = await jsonCRUD.JSONRead(sf.pathU,sf.encoding).then(res => {
+            return res
+        })
 
-    const user = users.find(userAdmin => email === userAdmin.email && senha === userAdmin.senha )
+        const user = users.find(userAdmin => email === userAdmin.email && senha === userAdmin.senha )
 
-    if(!user){
-        const message = 'Não autorizado!'
-  
-        return res.status(400).render('pages/auth', {message})
+        if(!user){
+            const message = 'Não autorizado!'
+    
+            return res.status(401).render('pages/auth', {message})
+        }
+        // req.session.userAdmin = userAdmin
+        return res.status(200).redirect('/auth/dashboard')  
+    }catch(err){
+        return res.status(400).render('/layout/erro')
     }
-    // req.session.userAdmin = userAdmin
-    return res.status(200).redirect('/auth/dashboard')  
 })
 
 router.get('/logout', (req, res) => {

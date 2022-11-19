@@ -1,0 +1,47 @@
+<head>
+    <title>POST - SHOW / <%post.id%> </title>
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/post.css">
+</head>
+<body>
+    <div class="card mt-4" id="card-show" style=" margin: 15px;">
+        <% if(post.postagem.cabecalho){ %>
+            <div class="card-header">  <%=post.postagem.cabecalho%> </div>
+        <% } %>
+
+        <div class="card-body">
+            <% if(post.postagem.image){ %>
+                <div class="img-card">
+                    <img src="/img/services/<%=post.postagem.image%>" alt="Foto do Post" class="card-img img-fluid">
+                </div>
+            <% } %>
+            
+            
+            <% if(post.postagem.titulo){ %>
+                <h2 class="card-title"> <%=post.postagem.titulo%> </h2>
+            <% } %>
+          
+          
+            <div class="card-text" id="conteudo">
+                <% if(post.postagem.subtitulo){ %>
+                <p>
+                    <strong class="showServico">
+                    <span class="card-sub-title mb-4"> <%=post.postagem.subtitulo%> </span>
+                    </strong>
+                </p>
+                <% } %>
+                
+                <div>
+                    <p id="<%=post.id%>"> <%=post.postagem.textPost%></p>
+                </div>
+                
+            </div>
+        </div>
+        
+        <div class="card-footer"> 
+          <% const t = new Date() %> 
+          <%= t %> 
+        </div>
+    </div>
+</body>

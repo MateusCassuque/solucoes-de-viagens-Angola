@@ -14,6 +14,20 @@ const sf = {
     encoding: 'utf-8'
 }
 
+router.get('/show/:postId', async (req, res) =>{
+    const id = req.params.postId * 1
+
+    const posts = await jsonCRUD.JSONRead(sf.path, sf.encoding).then(res => {
+        return res
+    })
+    
+    const post = posts.find(post => post.id == id)
+
+    res.status(200).render('layout/home', {
+        conteudo: 'postagem/index',
+        post    
+    })
+})
 
 router.get('/create', async (req, res) => {
     try{

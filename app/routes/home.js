@@ -9,28 +9,30 @@ const multerConfig = require('../../config/multerConfig')
 
 
 const dbc = {
-  path: path.resolve(__dirname, '..', '..', 'config', 'jsons', 'services.json' ),
-  pathSbs: path.resolve(__dirname, '..', '..', 'config', 'jsons', 'subservicos.json' ),
-  encoding: 'utf-8'
+    pathPost: path.resolve(__dirname, '..', '..', 'config', 'jsons', 'post.json' ),
+    path: path.resolve(__dirname, '..', '..', 'config', 'jsons', 'services.json' ),
+    pathSbs: path.resolve(__dirname, '..', '..', 'config', 'jsons', 'subservicos.json' ),
+    encoding: 'utf-8'
 }
 
 router.get('/', async (req,res) => {
   try {
-    const servicos = await jsonCRUD.JSONRead(dbc.path, dbc.encoding).then(res => {
-      return res
-    })
     
     const subservicos = await jsonCRUD.JSONRead(dbc.pathSbs, dbc.encoding).then(res => {
       return res
     })
     
+    const posts = await jsonCRUD.JSONRead(dbc.pathPost,dbc.encoding).then(res => {
+      return res
+    })
+    
     res.status(200).render('layout/home', {
       conteudo: '/home/index',
-      subservicos, 
-      servicos
+      subservicos,
+      posts
     })
   } catch (error) {
-    res.status(400).res.send({
+    res.status(400).send({
       Error: 'Erro to access the home page'
     })
   }
